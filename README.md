@@ -58,18 +58,21 @@ npm i
 # Run this app
 node fastify-auth-provider
 
+# Use pm2 to manage it as a service
+pm2 start fastify-auth-provider
 ```
 
 4. Verify
+
 Open RabbitMQ Management page at `http://localhost:15672/`.
 You should be able to login by typing any username and password
 
 ### Improvements
 
-* [] Support YAML configuration
-* [] Read credentials from a file
-* [] Read credentials from Redis
-* [] Read credentials from DB
+* Support YAML configuration
+* Read credentials from a file
+* Read credentials from Redis
+* Read credentials from DB
 
 ## References
 
