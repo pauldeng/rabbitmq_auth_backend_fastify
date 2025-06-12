@@ -68,23 +68,30 @@ const topicAuthSchema = {
 
 // Called by RabbitMQ to verify user
 fastify.post('/auth/user', { schema: userAuthSchema }, async (req, reply) => {
+  let decision = true;
+  // https://www.rabbitmq.com/docs/management#permissions
   return reply.send('allow administrator management');
 });
 
 // Called to check vhost access
 fastify.post('/auth/vhost', { schema: vhostAuthSchema }, async (req, reply) => {
-  return reply.send('allow');
+  let decision = true;
+  // custom logic to determine if the user can access the vhost
+  return reply.send(decision ? 'allow' : 'deny');
 });
 
 // Called to check permissions
 fastify.post('/auth/resource', { schema: resourceAuthSchema }, async (req, reply) => {
-  return reply.send('allow');
+  let decision = true;
+  // custom logic to determine if the user can access the resource
+  return reply.send(decision ? 'allow' : 'deny');
 });
 
 // Called to check topic permissions
 fastify.post('/auth/topic', { schema: topicAuthSchema }, async (req, reply) => {
-    console.log()
-  return reply.send('allow');
+  let decision = true;
+  // custom logic to determine if the user can access the topic
+  return reply.send(decision ? 'allow' : 'deny');
 });
 
 fastify.listen({ port: 8080, host: '0.0.0.0' });
